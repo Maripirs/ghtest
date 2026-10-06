@@ -1,15 +1,104 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Commit Log</title>
+    <meta name="description" content="A small cheat sheet of git commands worth knowing.">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>Commit Log</h1>
-    <p>git commands worth knowing.</p>
-    <ul>
-      <li>git status</li>
-      <li>git commit</li>
-      <li>git diff</li>
-    </ul>
+    <header class="site-header">
+      <a class="brand" href="#">commit<span>log</span></a>
+      <nav>
+        <a href="#commands">Commands</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#glossary">Glossary</a>
+        <a href="https://github.com/Maripirs/ghtest">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Commit Log</h1>
+        <p>git commands worth knowing.</p>
+        <a class="button" href="#commands">Browse commands</a>
+      </section>
+
+      <section id="commands" class="panel">
+        <div class="panel-head">
+          <h2>Commands</h2>
+          <input id="search" type="search" placeholder="Filter commands" aria-label="Filter commands">
+        </div>
+        <ul>
+          <li>git status: see what changed and what's staged</li>
+          <li>git diff: show exact line changes not yet staged</li>
+          <li>git add: stage changes for the next commit</li>
+          <li>git commit: save a snapshot of staged changes</li>
+          <li>git log: browse the commit history</li>
+          <li>git switch: move to another branch</li>
+          <li>git branch: list, create, or delete branches</li>
+          <li>git pull: fetch and merge your teammates' work</li>
+          <li>git push: upload your commits to GitHub</li>
+          <li>git fetch: download new commits without merging</li>
+          <li>git stash: park unfinished work for later</li>
+          <li>git restore: discard changes to a file</li>
+        </ul>
+        <p class="count" id="count"></p>
+      </section>
+
+      <section id="workflow" class="panel">
+        <h2>The everyday loop</h2>
+        <ol class="steps">
+          <li><strong>Branch</strong> off main for each change.</li>
+          <li><strong>Commit</strong> small, focused snapshots.</li>
+          <li><strong>Push</strong> the branch and open a pull request.</li>
+          <li><strong>Review</strong>, merge, and pull main again.</li>
+        </ol>
+      </section>
+
+      <section id="glossary" class="panel">
+        <h2>Glossary</h2>
+        <dl class="glossary">
+          <div>
+            <dt>Repository</dt>
+            <dd>A project folder plus its full history of commits.</dd>
+          </div>
+          <div>
+            <dt>Commit</dt>
+            <dd>A saved snapshot of your files, with a message and an id.</dd>
+          </div>
+          <div>
+            <dt>Branch</dt>
+            <dd>A movable label pointing at a commit. New work goes on a branch.</dd>
+          </div>
+          <div>
+            <dt>HEAD</dt>
+            <dd>Where you are right now: the branch or commit you have checked out.</dd>
+          </div>
+          <div>
+            <dt>Remote</dt>
+            <dd>A copy of the repository hosted elsewhere, usually GitHub, named origin.</dd>
+          </div>
+          <div>
+            <dt>Pull request</dt>
+            <dd>A request to merge one branch into another, with a place to review it.</dd>
+          </div>
+          <div>
+            <dt>Merge conflict</dt>
+            <dd>Two changes to the same lines that git can't combine on its own.</dd>
+          </div>
+          <div>
+            <dt>Staging area</dt>
+            <dd>The list of changes that will go into your next commit.</dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Built while learning git. Every change ships through a pull request.</p>
+    </footer>
   </body>
 </html>

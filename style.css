@@ -1,0 +1,299 @@
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #1b2433;
+  --muted: #5b6678;
+  --accent: #f05033;
+  --accent-ink: #ffffff;
+  --line: #dde2e8;
+  --code-bg: #eef1f5;
+  --radius: 12px;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11161f;
+    --surface: #1a212d;
+    --ink: #e6ebf2;
+    --muted: #98a3b5;
+    --line: #2b3444;
+    --code-bg: #232c3a;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+a {
+  color: inherit;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px max(20px, calc((100% - 880px) / 2));
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  font-size: 0.95rem;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: var(--ink);
+}
+
+/* Layout */
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 20px 64px;
+}
+
+.hero {
+  padding: 72px 0 48px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero h1::before {
+  content: "$ ";
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.hero p {
+  margin: 10px 0 28px;
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(1.08);
+}
+
+.panel {
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.panel h2 {
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+}
+
+.panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
+#search {
+  flex: 0 1 240px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+}
+
+/* Command list */
+#commands ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#commands li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+#commands li:last-child {
+  border-bottom: none;
+}
+
+#commands li:hover {
+  background: var(--code-bg);
+}
+
+#commands li[hidden] {
+  display: none;
+}
+
+#commands code {
+  font-family: var(--mono);
+  font-weight: 600;
+  background: var(--code-bg);
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+#commands .desc {
+  color: var(--muted);
+}
+
+#commands .copied-tag {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.count {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Workflow */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  padding: 16px;
+  background: var(--bg);
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+.steps li::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.steps strong {
+  color: var(--ink);
+}
+
+/* Anything added below the list later (tips, notes) */
+main section:not(.hero):not(.panel) {
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* Footer */
+.site-footer {
+  padding: 24px 20px 40px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 520px) {
+  nav {
+    gap: 14px;
+  }
+  .hero {
+    padding-top: 48px;
+  }
+}
+
+/* Glossary */
+.glossary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.glossary div {
+  padding: 14px 16px;
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+.glossary dt {
+  font-weight: 700;
+}
+
+.glossary dd {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
